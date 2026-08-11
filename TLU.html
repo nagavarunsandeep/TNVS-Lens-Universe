@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNVS Lens Universe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tnvs_style.css">
+    <style>
+        /* Staggered Load Animation */
+        .lens-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: card-load 0.6s ease-out forwards;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* Animation Delays for each card */
+        .lens-card-link:nth-child(1) .lens-card { animation-delay: 0.1s; }
+        .lens-card-link:nth-child(2) .lens-card { animation-delay: 0.2s; }
+        .lens-card-link:nth-child(3) .lens-card { animation-delay: 0.3s; }
+        .lens-card-link:nth-child(4) .lens-card { animation-delay: 0.4s; }
+        .lens-card-link:nth-child(5) .lens-card { animation-delay: 0.5s; }
+        .lens-card.coming-soon { animation-delay: 0.6s; }
+
+        @keyframes card-load {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* "Coming Soon" Card Styling */
+        .lens-card.coming-soon {
+            opacity: 0;
+            cursor: default;
+        }
+        .lens-card.coming-soon .lens-icon {
+            filter: grayscale(80%);
+        }
+        .lens-card.coming-soon:hover {
+            transform: none !important;
+        }
+
+        header {
+            padding-bottom: 1rem;
+        }
+
+        .hero-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 0.8fr;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-copy {
+            text-align: left;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(0, 123, 255, 0.2);
+            color: #8dd0ff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
+        }
+
+        .hero-copy h1 {
+            margin-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .hero-copy p {
+            max-width: 680px;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.2rem;
+        }
+
+        .hero-badge {
+            padding: 0.6rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .hero-highlight {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .highlight-card {
+            border-radius: 18px;
+            padding: 1rem 1.15rem;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(35, 213, 171, 0.15));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .highlight-title {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #8dd0ff;
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .search-shell {
+            max-width: 900px;
+            margin: 1.5rem auto 2rem;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        #search-lenses {
+            width: 100%;
+            padding: 15px 20px 15px 3rem;
+            font-size: 1.05rem;
+            border-radius: 999px;
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+        }
+
+        #search-lenses:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .filter-toolbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .filter-pill {
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-color);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: var(--primary-accent);
+            color: white;
+            border-color: transparent;
+        }
+
+        .empty-state {
+            max-width: 680px;
+            margin: 2rem auto 0;
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px dashed var(--card-border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .empty-state[hidden] {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-shell {
+                grid-template-columns: 1fr;
+                padding: 1.25rem;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero-copy h1 {
+                text-align: center;
+            }
+
+            .hero-badges {
+                justify-content: center;
+            }
+
+            .hero-highlight {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-nav-toggle {
+                display: inline-flex;
+            }
+
+            .filter-pills {
+                display: none;
+                width: 100%;
+                padding: 0.85rem;
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(10px);
+            }
+
+            .filter-pills.is-open {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <header>
+        <div class="hero-shell">
+            <div class="hero-copy">
+                <div class="eyebrow">🌌 AI-powered discovery hub</div>
+                <h1>Welcome to TNVS Lens Universe</h1>
+                <p>Your portal to specialized information tools built for faster decisions, richer insights, and smoother workflows.</p>
+                <div class="hero-badges">
+                    <span class="hero-badge">⚡ Instant insights</span>
+                    <span class="hero-badge">📱 Mobile ready</span>
+                    <span class="hero-badge">🧠 AI-driven workflows</span>
+                </div>
+            </div>
+            <div class="hero-highlight">
+                <div class="highlight-card">
+                    <span class="highlight-title">Smart lenses</span>
+                    <span class="highlight-value">5 specialized tools</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="highlight-title">Experience</span>
+                    <span class="highlight-value">Search, discover, act</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="highlight-title">Built for</span>
+                    <span class="highlight-value">Faster everyday decisions</span>
+                </div>
+            </div>
+        </div>
+        <button id="theme-toggle" title="Toggle light/dark mode">☀️</button>
+    </header>
+
+    <main>
+        <div class="search-shell">
+            <div class="search-container">
+                <span class="search-icon">🔎</span>
+                <input type="text" id="search-lenses" placeholder="Search for a Lens...">
+            </div>
+            <div class="filter-toolbar">
+                <button class="mobile-nav-toggle" id="mobile-nav-toggle" type="button" aria-expanded="false">
+                    <span>☰</span>
+                    <span>Browse categories</span>
+                </button>
+                <div class="filter-pills" id="filter-pills" role="toolbar" aria-label="Lens categories">
+                    <button class="filter-pill active" data-filter="all" type="button">All</button>
+                    <button class="filter-pill" data-filter="health" type="button">Health</button>
+                    <button class="filter-pill" data-filter="agriculture" type="button">Agriculture</button>
+                    <button class="filter-pill" data-filter="aquaculture" type="button">Aquaculture</button>
+                    <button class="filter-pill" data-filter="mobility" type="button">Mobility</button>
+                    <button class="filter-pill" data-filter="wellness" type="button">Wellness</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="lens-grid">
+            <a href="PharmaLens/PharmaLens.html" class="lens-card-link" data-category="health" data-tags="medicine pharmacy drug side effects treatment">
+                <div class="lens-card">
+                    <div class="lens-icon">⚕️</div>
+                    <h2>PharmaLens</h2>
+                    <p>Instantly identify medications, their uses, and side effects. Search by name, photo, or symptom.</p>
+                </div>
+            </a>
+
+            <a href="AgriLens/AgriLens.html" class="lens-card-link" data-category="agriculture" data-tags="crop soil farming weather season recommendation">
+                <div class="lens-card">
+                    <div class="lens-icon">🌱</div>
+                    <h2>AgriLens</h2>
+                    <p>Predict the most suitable crop based on weather, season, and soil test results.</p>
+                </div>
+            </a>
+
+            <a href="AquaLens/AquaLens.html" class="lens-card-link" data-category="aquaculture" data-tags="prawn fish water quality aquaculture drinking water">
+                <div class="lens-card">
+                    <div class="lens-icon">🐟</div>
+                    <h2>AquaLens</h2>
+                    <p>Predicts suitable prawn and fish culture based on water quality and analyzes drinking water parameters.</p>
+                </div>
+            </a>
+
+            <a href="RouteLens/RouteLens.html" class="lens-card-link" data-category="mobility" data-tags="travel route trip fuel cab itinerary planning">
+                <div class="lens-card">
+                    <div class="lens-icon">🗺️</div>
+                    <h2>RouteLens</h2>
+                    <p>AI-powered trip planning, live cab estimates, fuel cost calculation, and smart itineraries.</p>
+                </div>
+            </a>
+
+            <a href="FitLens/FitLens.html" class="lens-card-link" data-category="wellness" data-tags="fitness calorie diet nutrition gym health plan">
+                <div class="lens-card">
+                    <div class="lens-icon">🏋️</div>
+                    <h2>FitLens</h2>
+                    <p>Calculate daily calorie needs, get diet plans, and find food recommendations for general health and gym-goers.</p>
+                </div>
+            </a>
+
+            <div class="lens-card coming-soon">
+                <div class="lens-icon">✨</div>
+                <h2>More Lenses Coming Soon!</h2>
+                <p>We're constantly developing new tools. Stay tuned for exciting updates.</p>
+            </div>
+        </section>
+
+        <div class="empty-state" id="empty-state" hidden>
+            <h3>No matching lenses found</h3>
+            <p>Try a different keyword or switch to another category.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TNVS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const stars = [
+            document.getElementById('stars'),
+            document.getElementById('stars2'),
+            document.getElementById('stars3')
+        ];
+
+        function updateStarVisibility() {
+            const isLightMode = body.classList.contains('light-mode');
+            stars.forEach(starDiv => {
+                starDiv.style.display = isLightMode ? 'block' : 'none';
+            });
+        }
+
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggle.textContent = '🌙';
+        }
+        updateStarVisibility(); // Set initial visibility
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+            updateStarVisibility(); // Update visibility on toggle
+        });
+
+        // 3D Tilt Effect Script
+        document.querySelectorAll('.lens-card-link .lens-card').forEach(card => {
+            const maxRotate = 15; // Max rotation in degrees
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const { width, height } = rect;
+                const middleX = width / 2;
+                const middleY = height / 2;
+
+                const rotateY = ((x - middleX) / middleX) * maxRotate;
+                const rotateX = -((y - middleY) / middleY) * maxRotate;
+
+                card.style.transition = 'transform 0.1s ease-out';
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transition = 'transform 0.4s ease-in-out';
+                card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.1s ease-out';
+            });
+        });
+
+        // Search/Filter Logic
+        const searchInput = document.getElementById('search-lenses');
+        const lensCards = document.querySelectorAll('.lens-card-link');
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const filterPanel = document.getElementById('filter-pills');
+        const mobileToggle = document.getElementById('mobile-nav-toggle');
+        const emptyState = document.getElementById('empty-state');
+        let activeFilter = 'all';
+
+        function applyFilters() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            lensCards.forEach(cardLink => {
+                const card = cardLink.querySelector('.lens-card');
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const tags = (cardLink.dataset.tags || '').toLowerCase();
+                const category = cardLink.dataset.category || 'all';
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm);
+
+                const shouldShow = matchesFilter && matchesSearch;
+                cardLink.style.display = shouldShow ? 'block' : 'none';
+
+                if (shouldShow) {
+                    visibleCount += 1;
+                }
+            });
+
+            emptyState.hidden = visibleCount > 0;
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+
+        filterPills.forEach(button => {
+            button.addEventListener('click', () => {
+                activeFilter = button.dataset.filter || 'all';
+                filterPills.forEach(pill => pill.classList.toggle('active', pill === button));
+                applyFilters();
+                if (mobileToggle) {
+                    filterPanel.classList.remove('is-open');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                const shouldOpen = !filterPanel.classList.contains('is-open');
+                filterPanel.classList.toggle('is-open', shouldOpen);
+                mobileToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+            });
+        }
+
+        applyFilters();
+
+    </script>
+</body>
+</html>

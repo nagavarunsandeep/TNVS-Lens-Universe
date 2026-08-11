@@ -1,0 +1,364 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --primary-accent: #007bff;
+    --text-color: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --card-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    inset: auto;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    top: -6rem;
+    right: -8rem;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.35), transparent 70%);
+}
+
+body::after {
+    bottom: -8rem;
+    left: -8rem;
+    background: radial-gradient(circle, rgba(35, 213, 171, 0.28), transparent 70%);
+}
+
+/* --- Header --- */
+header {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    background: linear-gradient(135deg, #1a1a1a, #121212);
+    background-color: transparent; /* Make header transparent to see stars */
+    position: relative; /* Needed for positioning the toggle button */
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #ffffff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- New Colorful Solid Animation --- */
+@keyframes rainbow-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body:not(.light-mode) header h1, body.light-mode header h1 {
+    background: linear-gradient(
+        -45deg, 
+        #ee7752, #e73c7e, #23a6d5, #23d5ab,
+        #ee7752, #e73c7e, #23a6d5, #23d5ab
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-text 10s ease-in-out infinite;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* --- Main Content & Grid --- */
+main {
+    padding: 2rem 1rem;
+}
+
+.lens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Card Styling & Animation --- */
+.lens-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Ensures the link takes up the full card space */
+}
+
+.lens-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.26);
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(18px);
+}
+
+.lens-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 40%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.lens-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    border-color: rgba(0, 123, 255, 0.35);
+}
+
+.lens-card:hover::before {
+    transform: scale(1);
+}
+
+.lens-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.lens-card h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #fff;
+}
+
+.lens-card, header, footer {
+    transition: background-color 0.3s ease;
+}
+
+
+/* --- Theme Toggle Button --- */
+#theme-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+    font-size: 1.5rem;
+    backdrop-filter: blur(12px);
+}
+
+#theme-toggle {
+    color: #f39c12; /* Sun color for dark mode default */
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* --- Light Mode --- */
+body.light-mode {
+    --bg-color: #f4f4f9;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-border: #e0e0e0;
+}
+body.light-mode #theme-toggle {
+    color: #4a4a4a; /* Moon color for light mode */
+}
+
+
+body.light-mode header {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    background-color: transparent;
+}
+
+body.light-mode .lens-card h2 {
+    color: #333;
+}
+
+body.light-mode .lens-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 244, 249, 0.9));
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode footer {
+    background-color: #e9ecef;
+}
+
+.lens-card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    flex-grow: 1; /* Allow paragraph to fill space, pushing footer content down */
+    font-weight: 300;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    background-color: #1a1a1a;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .lens-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #theme-toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+/* --- New Card Animation --- */
+@keyframes card-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.lens-card-link {
+    animation: card-fade-in 0.6s backwards;
+}
+/* --- Starfield Background Animation --- */
+@keyframes move-twink-back {
+    from {transform: translate3d(0, 0, 0);}
+    to {transform: translate3d(0, -1000px, 0);}
+}
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+#stars, #stars2, #stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+
+/* Helper for generating stars */
+/* Note: This is a simplified version. For more complex patterns, a pre-processor like Sass would be useful. */
+@function multiple-box-shadow ($n) {
+  $value: '#{random(2000)}px #{random(2000)}px #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+  }
+  @return unquote($value);
+}
+
+/* Star Layers */
+#stars {
+  background: transparent;
+  animation: move-twink-back 200s linear infinite;
+  /* Generated box-shadow for small stars */
+  box-shadow: 796px 1630px #FFF, 1084px 1339px #FFF, 1898px 168px #FFF, 1018px 123px #FFF, 1294px 1138px #FFF, 1211px 1883px #FFF, 1989px 1381px #FFF, 1083px 143px #FFF, 182px 1082px #FFF, 1868px 1030px #FFF, 171px 1836px #FFF, 1311px 1908px #FFF, 1696px 1910px #FFF, 1149px 1912px #FFF, 1088px 1341px #FFF, 1348px 1928px #FFF, 131px 1000px #FFF, 1960px 185px #FFF, 1038px 1383px #FFF, 149px 1342px #FFF, 1530px 1180px #FFF, 1434px 1318px #FFF, 130px 1603px #FFF, 1649px 182px #FFF, 1104px 1095px #FFF, 135px 1285px #FFF, 1034px 1745px #FFF, 1500px 1423px #FFF, 1811px 1383px #FFF, 1838px 1983px #FFF;
+}
+
+#stars2 {
+  background: transparent;
+  animation: move-twink-back 150s linear infinite;
+  /* Generated box-shadow for medium stars */
+  box-shadow: 1982px 1419px #FFF, 1386px 1386px #FFF, 181px 1339px #FFF, 1865px 1290px #FFF, 1706px 1356px #FFF, 139px 1233px #FFF, 1111px 1838px #FFF, 114px 1511px #FFF, 1475px 1933px #FFF, 1905px 1038px #FFF, 1235px 1198px #FFF, 113px 1801px #FFF, 1184px 1898px #FFF, 141px 133px #FFF, 1381px 1134px #FFF, 1151px 113px #FFF, 1841px 1831px #FFF, 128px 181px #FFF, 118px 111px #FFF, 1814px 148px #FFF;
+}
+
+#stars3 {
+  background: transparent;
+  animation: move-twink-back 100s linear infinite;
+  /* Generated box-shadow for large stars */
+  box-shadow: 1739px 1583px #FFF, 1983px 1034px #FFF, 1192px 1490px #FFF, 1303px 183px #FFF, 1813px 138px #FFF, 138px 183px #FFF, 183px 183px #FFF, 183px 183px #FFF, 183px 183px #FFF, 183px 183px #FFF;
+}
+
+/* Adjust background for light mode to be less intense */
+body.light-mode #stars,
+body.light-mode #stars2,
+body.light-mode #stars3 {
+    box-shadow: none; /* Hide stars in light mode for better readability */
+}
+
+body.light-mode {
+    background: #f4f4f9; /* Fallback solid color for light mode */
+}
+
+body.light-mode header {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+}
+
+body.light-mode footer {
+    background-color: #e9ecef;
+}
+
+/* Staggered animation delays for cards */
+.lens-card-link:nth-child(1) { animation-delay: 0.1s; }
+.lens-card-link:nth-child(2) { animation-delay: 0.2s; }
+.lens-card-link:nth-child(3) { animation-delay: 0.3s; }
+.lens-card-link:nth-child(4) { animation-delay: 0.4s; }
+.lens-card-link:nth-child(5) { animation-delay: 0.5s; }
+.lens-card-link:nth-child(6) { animation-delay: 0.6s; }
