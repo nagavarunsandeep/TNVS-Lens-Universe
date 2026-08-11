@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>FitLens - Health & Calorie Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../tnvs_style.css">
+    <link rel="stylesheet" href="FitLens.css">
+    <style>
+        /* Ensure the FitLens title is always visible */
+        .app-name-link {
+            color: white;
+        }
+
+        /* "Back to Top" Button Styles */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(10px);
+            z-index: 1000;
+        }
+        #back-to-top.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <header style="background-color: #212529;">
+        <div class="header-content">
+            <h1><a href="../TLU.html" class="app-name-link">🏋️ FitLens</a></h1>
+            
+        </div>
+    </header>
+
+    <main>
+        <div class="fitlens-grid">
+            <div class="lens-card" id="calculator-card">
+                <div class="card-intro">
+                    <div class="card-kicker">🧭 Wellness planner</div>
+                    <h2>Your Details</h2>
+                    <p>Enter your information to calculate your health metrics and unlock better nutrition goals.</p>
+                    <div class="intro-badges">
+                        <span class="intro-badge">⚖️ BMI insights</span>
+                        <span class="intro-badge">🔥 Calorie targets</span>
+                        <span class="intro-badge">🥗 Macro guidance</span>
+                    </div>
+                </div>
+            <form id="calorie-form">
+                <div class="form-group">
+                    <label for="age">Age (15-80)</label>
+                    <input type="number" id="age" placeholder="Enter your age" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" placeholder="Enter your weight in kilograms" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" placeholder="Enter your height in centimeters" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="activity">Daily Activity Level</label>
+                    <select id="activity">
+                        <option value="1.2">Sedentary (little or no exercise)</option>
+                        <option value="1.375">Lightly Active (light exercise/sports 1-3 days/week)</option>
+                        <option value="1.55">Moderately Active (moderate exercise/sports 3-5 days/week)</option>
+                        <option value="1.725">Very Active (hard exercise/sports 6-7 days a week)</option>
+                        <option value="1.9">Extra Active (very hard exercise/sports & physical job)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goal">Your Goal</label>
+                    <select id="goal">
+                        <option value="maintain">Maintain Weight</option>
+                        <option value="lose">Weight Loss (0.5kg/week)</option>
+                        <option value="gain">Weight Gain (0.5kg/week)</option>
+                    </select>
+                </div>
+                <button type="submit" class="fitlens-button">Calculate</button>
+                <div class="preset-row">
+                    <button type="button" class="preset-pill" data-preset="maintain">Balanced</button>
+                    <button type="button" class="preset-pill" data-preset="lose">Fat-loss</button>
+                    <button type="button" class="preset-pill" data-preset="gain">Muscle gain</button>
+                </div>
+            </form>
+            </div>
+
+            <div class="lens-card" id="result-card" style="display:none;">
+                <h2>Your Results</h2>
+                <div id="result"></div>
+            </div>
+        </div>
+
+        <div class="lens-card" id="diet-plan" style="display:none;">
+            <h2>Food Recommendations</h2>
+            <p>Here are some food suggestions based on macronutrient groups. Adjust portion sizes to meet your daily calorie goals.</p>
+            
+            <div class="food-category">
+                <h3>Foods Rich in Protein</h3>
+                <ul class="food-list">
+                    <li><strong>Lean Meats:</strong> Chicken Breast, Turkey, Lean Beef</li>
+                    <li><strong>Fish:</strong> Salmon, Tuna, Cod</li>
+                    <li><strong>Dairy:</strong> Greek Yogurt, Cottage Cheese, Milk</li>
+                    <li><strong>Eggs:</strong> A versatile and complete protein source.</li>
+                    <li><strong>Plant-Based:</strong> Lentils, Chickpeas, Tofu, Edamame, Quinoa</li>
+                </ul>
+            </div>
+
+            <div class="food-category">
+                <h3>Foods Rich in Healthy Carbohydrates</h3>
+                <ul class="food-list">
+                    <li><strong>Whole Grains:</strong> Oats, Brown Rice, Quinoa, Whole-Wheat Bread</li>
+                    <li><strong>Vegetables:</strong> Sweet Potatoes, Broccoli, Spinach, Bell Peppers</li>
+                    <li><strong>Fruits:</strong> Berries, Bananas, Apples, Oranges</li>
+                    <li><strong>Legumes:</strong> Beans, Lentils, Peas</li>
+                </ul>
+            </div>
+
+            <div class="food-category">
+                <h3>Foods Rich in Healthy Fats</h3>
+                <ul class="food-list">
+                    <li><strong>Avocados:</strong> Rich in monounsaturated fats.</li>
+                    <li><strong>Nuts & Seeds:</strong> Almonds, Walnuts, Chia Seeds, Flaxseeds</li>
+                    <li><strong>Oils:</strong> Extra Virgin Olive Oil, Coconut Oil</li>
+                    <li><strong>Fatty Fish:</strong> Salmon, Mackerel, Sardines (also high in protein)</li>
+                </ul>
+            </div>
+
+            <h2>Special Diet for Gym Persons</h2>
+            <p>For individuals who are regularly training at the gym, protein intake is crucial for muscle repair and growth. Consider a higher protein percentage in your diet (e.g., 30-40% of total calories).</p>
+            <ul>
+                <li><strong>Pre-Workout (30-60 mins before):</strong> A combination of simple carbs and a small amount of protein. Example: A banana with a tablespoon of peanut butter, or a small bowl of oatmeal.</li>
+                <li><strong>Post-Workout (within 60 mins after):</strong> A meal rich in protein and complex carbs to replenish glycogen stores and repair muscle. Example: A protein shake, grilled chicken with sweet potato, or Greek yogurt with berries.</li>
+                <li><strong>Hydration:</strong> Drink plenty of water throughout the day, especially before, during, and after your workout.</li>
+            </ul>
+    </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <footer>
+        <p>Disclaimer: This calculator provides an estimate. Consult with a healthcare professional or registered dietitian for personalized advice.</p>
+        <p>&copy; 2024 TNVS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('calorie-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const gender = document.getElementById('gender').value;
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = document.getElementById('goal').value;
+
+            // Validate inputs
+            if (isNaN(age) || isNaN(weight) || isNaN(height) || age < 15 || age > 80 || weight <= 0 || height <= 0) {
+                document.getElementById('result').innerHTML = `<p class="error-message">Please enter valid age (15-80), weight, and height.</p>`;
+                document.getElementById('result-card').style.display = 'block';
+                document.getElementById('diet-plan').style.display = 'none';
+                return;
+            }
+
+            // --- Calculations ---
+
+            // 1. BMI
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+            let bmiCategory = '';
+            if (bmi < 18.5) bmiCategory = 'Underweight';
+            else if (bmi < 25) bmiCategory = 'Healthy Weight';
+            else if (bmi < 30) bmiCategory = 'Overweight';
+            else bmiCategory = 'Obesity';
+
+            // 2. BMR (Mifflin-St Jeor Equation)
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            // 3. TDEE (Total Daily Energy Expenditure)
+            const tdee = bmr * activity;
+
+            // 4. Goal-based Calories
+            let targetCalories;
+            switch (goal) {
+                case 'lose':
+                    targetCalories = tdee - 500;
+                    break;
+                case 'gain':
+                    targetCalories = tdee + 500;
+                    break;
+                default: // maintain
+                    targetCalories = tdee;
+            }
+
+            // 5. Macronutrients (40% Carbs, 30% Protein, 30% Fat)
+            const carbs = Math.round((targetCalories * 0.40) / 4); // 4 cal per gram
+            const protein = Math.round((targetCalories * 0.30) / 4); // 4 cal per gram
+            const fat = Math.round((targetCalories * 0.30) / 9);   // 9 cal per gram
+
+
+            // --- Display Results ---
+            const resultElement = document.getElementById('result');
+            const goalLabel = goal === 'lose' ? 'Weight Loss' : goal === 'gain' ? 'Weight Gain' : 'Maintenance';
+            const goalProgress = Math.min(100, Math.round((targetCalories / 2400) * 100));
+            const bmiProgress = bmi < 18.5 ? 55 : bmi < 25 ? 70 : bmi < 30 ? 85 : 100;
+            resultElement.innerHTML = `
+                <div class="result-highlight">
+                    <div class="result-badge">Goal • ${goalLabel}</div>
+                    <h3>${Math.round(targetCalories)} kcal/day</h3>
+                    <p>Calculated from your body metrics, activity level, and nutrition goal.</p>
+                </div>
+                <div class="result-progress">
+                    <div class="result-metric">
+                        <div class="metric-label-row"><span>Goal pace</span><strong>${goalProgress}%</strong></div>
+                        <div class="progress-bar"><span style="width: ${goalProgress}%"></span></div>
+                    </div>
+                    <div class="result-metric">
+                        <div class="metric-label-row"><span>BMI range</span><strong>${bmiCategory}</strong></div>
+                        <div class="progress-bar"><span style="width: ${bmiProgress}%"></span></div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <h4>Your BMI</h4>
+                    <p><strong>${bmi.toFixed(1)}</strong> (${bmiCategory})</p>
+                </div>
+                <div class="result-item">
+                    <h4>Daily Calories for Your Goal</h4>
+                    <p>You need approximately <strong>${Math.round(targetCalories)} calories</strong> per day.</p>
+                </div>
+                <div class="result-item">
+                    <h4>Daily Macronutrient Goals</h4>
+                    <ul class="macro-list">
+                        <li>Protein: <span>${protein}g</span></li>
+                        <li>Carbohydrates: <span>${carbs}g</span></li>
+                        <li>Fats: <span>${fat}g</span></li>
+                    </ul>
+                </div>
+            `;
+
+            // Show results and diet plan
+            document.getElementById('result-card').style.display = 'block';
+            document.getElementById('diet-plan').style.display = 'block';
+
+            // Scroll to the results
+            document.getElementById('result-card').scrollIntoView({ behavior: 'smooth' });
+        });
+        // --- Back to Top Button ---
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                if (!backToTopButton.classList.contains('show')) {
+                    backToTopButton.style.display = 'block';
+                    // A small delay to allow the display property to apply before transitioning opacity
+                    setTimeout(() => backToTopButton.classList.add('show'), 10);
+                }
+            } else {
+                if (backToTopButton.classList.contains('show')) {
+                    backToTopButton.classList.remove('show');
+                    // Hide the element after the transition
+                    setTimeout(() => backToTopButton.style.display = 'none', 300);
+                }
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- Starfield Background ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const stars = [
+            document.getElementById('stars'),
+            document.getElementById('stars2'),
+            document.getElementById('stars3')
+        ];
+
+        function updateStarVisibility() {
+            const isLightMode = body.classList.contains('light-mode');
+            stars.forEach(starDiv => {
+                if (starDiv) { // Check if element exists
+                    starDiv.style.display = isLightMode ? 'none' : 'block';
+                }
+            });
+        }
+
+        // --- Preset Pills ---
+        document.querySelectorAll('.preset-pill').forEach(button => {
+            button.addEventListener('click', () => {
+                const preset = button.dataset.preset;
+                const goalSelect = document.getElementById('goal');
+                if (preset === 'lose') {
+                    goalSelect.value = 'lose';
+                } else if (preset === 'gain') {
+                    goalSelect.value = 'gain';
+                } else {
+                    goalSelect.value = 'maintain';
+                }
+            });
+        });
+
+        // --- Theme Toggler ---
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggle.textContent = '';
+        }
+        updateStarVisibility(); // Set initial visibility
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            
+            updateStarVisibility(); // Update visibility on toggle
+        });
+    </script>
+
+</body>
+</html>

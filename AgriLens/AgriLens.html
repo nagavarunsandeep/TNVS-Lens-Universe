@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLens - Crop Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #07111d;
+            --panel: rgba(255,255,255,0.92);
+            --accent: #2f9e44;
+            --accent-2: #0ea5e9;
+            --text: #102032;
+            --light-text: #f8fafc; /* Added for better visibility on dark backgrounds */
+        }
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top left, #15304a 0%, #07111d 45%, #02070c 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        .topbar {
+            background: rgba(8, 16, 29, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        /* Starfield Background */
+        #stars, #stars2, #stars3 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        #stars {
+            background-image: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0));
+            background-size: 300px 300px;
+            animation: animateStar 100s linear infinite;
+        }
+
+        #stars2 {
+            background-image: radial-gradient(2px 2px at 40px 100px, #eee, rgba(0,0,0,0));
+            background-size: 200px 200px;
+            animation: animateStar 150s linear infinite;
+        }
+
+        #stars3 {
+            background-image: radial-gradient(2px 2px at 50px 200px, #eee, rgba(0,0,0,0));
+            background-size: 100px 100px;
+            animation: animateStar 200s linear infinite;
+        }
+        @keyframes animateStar {
+            from { background-position: 0 0; }
+            to { background-position: -10000px -10000px; }
+        }
+        .hero-wrap {
+            padding: 3rem 0 2rem;
+        }
+        .hero-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 24px;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2)); /* Increased opacity */
+            color: #f8fafc;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        .hero-card .lead {
+            color: #d7e7f5;
+            font-size: 1.05rem;
+        }
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 1rem;
+        }
+        .chip {
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.55rem 0.8rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        .chip:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .panel {
+            background: var(--panel);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.16);
+            overflow: hidden;
+        }
+        .panel .card-header {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: white;
+            border-bottom: none;
+            font-weight: 600;
+        }
+        .btn-predict {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border: none;
+            color: white;
+            box-shadow: 0 10px 24px rgba(15, 118, 110, 0.22);
+        }
+        .btn-predict:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .info-box {
+            background: linear-gradient(135deg, rgba(47, 158, 68, 0.12), rgba(14, 165, 233, 0.12));
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem;
+        }
+        .info-box strong { display: block; font-size: 1.3rem; color: #0f766e; }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(47, 158, 68, 0.3), rgba(14, 165, 233, 0.25)); /* Increased opacity */
+            border-left: 5px solid var(--accent);
+            border-radius: 16px;
+            color: var(--light-text); /* Changed text color to light */
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .result-card:not(:first-child) {
+            opacity: 0.85;
+        }
+        .result-card:hover {
+            transform: translateY(-4px);
+            opacity: 1;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(15, 118, 110, 0.1);
+            color: #0f766e;
+            padding: 0.35rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .result-card strong {
+            color: white; /* Ensure strong text is white for contrast */
+        }
+        .yield-indicator {
+            font-weight: 600;
+        }
+        .yield-high { color: #34d399; }
+        .yield-medium { color: #fbbf24; }
+        .yield-low { color: #f87171; }
+        #predictionResult h3 { font-weight: 600; }
+        #resultsContainer .badge { font-size: 0.9rem; padding: 0.4em 0.7em; }
+
+
+    </style>
+</head>
+<body>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <nav class="topbar navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../TLU.html">← Back to TNVS Lens Universe</a>
+        </div>
+    </nav>
+
+    <main class="container py-4 py-md-5">
+        <div class="hero-wrap">
+            <div class="hero-card">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-7">
+                        <span class="pill">🌾 Precision farming</span>
+                        <h1>Plant smarter with AgriLens</h1>
+                        <p class="lead">Turn weather, soil, and season inputs into confident crop recommendations with a modern, decision-ready workflow.</p>
+                        <div class="chip-row">
+                            <button class="chip" type="button" data-scenario="kharif">Monsoon rice</button>
+                            <button class="chip" type="button" data-scenario="rabi">Winter wheat</button>
+                            <button class="chip" type="button" data-scenario="zaid">Summer millet</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="info-grid">
+                            <div class="info-box">
+                                <strong id="scorePanel">0%</strong>
+                                <span>Best-fit confidence</span>
+                            </div>
+                            <div class="info-box">
+                                <strong>5+</strong>
+                                <span>Crop Database</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="panel">
+                    <div class="card-header p-4">
+                        <h4 class="mb-0">Input Parameters</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="cropPredictionForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5><i class="fas fa-cloud-sun-rain"></i> Weather & Season</h5>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <label for="temperature" class="form-label">Average Temperature (°C)</label>
+                                        <input type="number" class="form-control" id="temperature" placeholder="e.g., 25" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="humidity" class="form-label">Average Humidity (%)</label>
+                                        <input type="number" class="form-control" id="humidity" placeholder="e.g., 70" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rainfall" class="form-label">Rainfall (mm)</label>
+                                        <input type="number" class="form-control" id="rainfall" placeholder="e.g., 100" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="season" class="form-label">Season</label>
+                                        <select class="form-select" id="season" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>Kharif (Monsoon)</option>
+                                            <option>Rabi (Winter)</option>
+                                            <option>Zaid (Summer)</option>
+                                            <option>All Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h5><i class="fas fa-vial"></i> Soil Test Results</h5>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <label for="nitrogen" class="form-label">Nitrogen (N) Content (kg/ha)</label>
+                                        <input type="number" class="form-control" id="nitrogen" placeholder="e.g., 90" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phosphorus" class="form-label">Phosphorus (P) Content (kg/ha)</label>
+                                        <input type="number" class="form-control" id="phosphorus" placeholder="e.g., 45" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="potassium" class="form-label">Potassium (K) Content (kg/ha)</label>
+                                        <input type="number" class="form-control" id="potassium" placeholder="e.g., 45" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ph" class="form-label">Soil pH</label>
+                                        <input type="number" step="0.1" class="form-control" id="ph" placeholder="e.g., 6.5" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="soilType" class="form-label">Soil Type</label>
+                                        <select class="form-select" id="soilType" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>Sandy</option>
+                                            <option>Loamy</option>
+                                            <option>Clay</option>
+                                            <option>Red</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-predict btn-lg">Predict Suitable Crop</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="predictionResult" class="d-none mt-4">
+                    <h3 class="mb-3 text-white">Top 3 Crop Recommendations</h3>
+                    <div id="resultsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('cropPredictionForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const humidity = parseFloat(document.getElementById('humidity').value);
+            const rainfall = parseFloat(document.getElementById('rainfall').value);
+            const season = document.getElementById('season').value;
+            const nitrogen = parseFloat(document.getElementById('nitrogen').value);
+            const phosphorus = parseFloat(document.getElementById('phosphorus').value);
+            const potassium = parseFloat(document.getElementById('potassium').value);
+            const ph = parseFloat(document.getElementById('ph').value);
+            const soilType = document.getElementById('soilType').value;
+
+            const crops = [
+                { name: 'Rice', score: 0, reason: 'Thrives in warm, humid conditions with strong monsoon support.', yield: 'High', soil: ['Clay', 'Loamy'] },
+                { name: 'Wheat', score: 0, reason: 'Grows well in cooler seasons with moderate moisture and balanced soil.', yield: 'High', soil: ['Loamy'] },
+                { name: 'Maize', score: 0, reason: 'Versatile crop that prefers warm weather and well-drained loamy soil.', yield: 'High', soil: ['Loamy', 'Sandy'] },
+                { name: 'Millets', score: 0, reason: 'Handles warm climates and less rainfall with excellent resilience.', yield: 'Medium', soil: ['Sandy', 'Loamy'] },
+                { name: 'Cotton', score: 0, reason: 'Prefers warm temperatures and fertile soil with good potassium balance.', yield: 'Medium', soil: ['Loamy', 'Red'] },
+                { name: 'Sugarcane', score: 0, reason: 'Performs well in long warm seasons and nutrient-rich conditions.', yield: 'High', soil: ['Clay', 'Loamy'] },
+                { name: 'Groundnut', score: 0, reason: 'Suitable for sandy and loamy soils in warm climates.', yield: 'Medium', soil: ['Sandy', 'Loamy'] }
+            ];
+
+            const seasonBoost = season.includes('Kharif') ? 10 : season.includes('Rabi') ? 6 : season.includes('Zaid') ? 8 : 4;
+
+            crops.forEach(crop => {
+                let score = 0;
+                // Temperature
+                if (crop.name === 'Rice' || crop.name === 'Maize' || crop.name === 'Cotton' || crop.name === 'Sugarcane') score += temperature > 22 && temperature < 35 ? 15 : 5;
+                if (crop.name === 'Wheat') score += temperature > 15 && temperature < 25 ? 15 : 5;
+                if (crop.name === 'Millets' || crop.name === 'Groundnut') score += temperature > 25 ? 15 : 6;
+
+                // Humidity & Rainfall
+                if (crop.name === 'Rice') score += humidity > 65 && rainfall > 120 ? 15 : 5;
+                if (crop.name === 'Wheat') score += rainfall > 70 && rainfall < 130 ? 10 : 4;
+                if (crop.name === 'Millets') score += rainfall < 100 ? 12 : 5;
+                if (crop.name === 'Cotton') score += humidity < 70 ? 10 : 5;
+                if (crop.name === 'Sugarcane') score += humidity > 60 && rainfall > 100 ? 12 : 6;
+
+                // Soil Nutrients
+                score += nitrogen > 80 ? 8 : (nitrogen > 50 ? 5 : 2);
+                score += phosphorus > 40 ? 7 : (phosphorus > 25 ? 4 : 2);
+                score += potassium > 40 ? 7 : (potassium > 25 ? 4 : 2);
+
+                // pH and Soil Type
+                score += ph > 6.0 && ph < 7.5 ? 10 : 4;
+                if (crop.soil.includes(soilType)) score += 15;
+
+                // Season
+                score += seasonBoost;
+                crop.score = score;
+            });
+
+            const topCrops = crops.sort((a, b) => b.score - a.score).slice(0, 3);
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+
+            topCrops.forEach((crop, index) => {
+                const confidence = Math.min(98, Math.round(45 + (crop.score / 110 * 55)));
+                if (index === 0) {
+                    document.getElementById('scorePanel').textContent = `${confidence}%`;
+                }
+
+                const yieldClass = crop.yield === 'High' ? 'yield-high' : crop.yield === 'Medium' ? 'yield-medium' : 'yield-low';
+
+                const resultCard = `
+                    <div class="result-card mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h4 class="mb-1">#${index + 1}: <strong>${crop.name}</strong></h4>
+                            <span class="badge rounded-pill bg-light text-dark">Confidence: ${confidence}%</span>
+                        </div>
+                        <p class="mb-2">${crop.reason}</p>
+                        <div class="d-flex gap-3">
+                            <span>Potential Yield: <strong class="yield-indicator ${yieldClass}">${crop.yield}</strong></span>
+                            <span>Preferred Soil: <strong class="text-white">${crop.soil.join(' / ')}</strong></span>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.innerHTML += resultCard;
+            });
+
+            document.getElementById('predictionResult').classList.remove('d-none');
+        });
+
+        document.querySelectorAll('.chip').forEach(button => {
+            button.addEventListener('click', () => {
+                const scenario = button.dataset.scenario;
+                const presets = {
+                    kharif: { temperature: 28, humidity: 78, rainfall: 135, season: 'Kharif (Monsoon)', nitrogen: 95, phosphorus: 50, potassium: 60, ph: 6.6, soilType: 'Clay' },
+                    rabi: { temperature: 20, humidity: 65, rainfall: 90, season: 'Rabi (Winter)', nitrogen: 80, phosphorus: 40, potassium: 50, ph: 6.8, soilType: 'Loamy' },
+                    zaid: { temperature: 32, humidity: 55, rainfall: 70, season: 'Zaid (Summer)', nitrogen: 70, phosphorus: 35, potassium: 45, ph: 6.4, soilType: 'Sandy' }
+                };
+                const values = presets[scenario];
+                if (!values) return;
+                document.getElementById('temperature').value = values.temperature;
+                document.getElementById('humidity').value = values.humidity;
+                document.getElementById('rainfall').value = values.rainfall;
+                document.getElementById('season').value = values.season;
+                document.getElementById('nitrogen').value = values.nitrogen;
+                document.getElementById('phosphorus').value = values.phosphorus;
+                document.getElementById('potassium').value = values.potassium;
+                document.getElementById('ph').value = values.ph;
+                document.getElementById('soilType').value = values.soilType;
+            });
+        });
+    </script>
+</body>
+</html>

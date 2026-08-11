@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua-Predict | Aquaculture & Water Quality Assistant</title>
+    <style>
+        :root {
+            --bg: #05131d;
+            --panel: rgba(255,255,255,0.96);
+            --accent: #0f766e;
+            --accent-2: #0284c7;
+            --text: #0f172a;
+        }
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top left, #16384a 0%, #05131d 45%, #02070c 100%);
+            color: var(--text);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+        }
+        header {
+            color: #ffffff;
+            padding: 2rem 1.25rem;
+            text-align: left;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(15,118,110,0.92), rgba(2,132,199,0.82));
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            margin-bottom: 24px;
+        }
+        header h1 { margin: 0; font-size: 2.25rem; }
+        header p { margin: 0.5rem 0 0; color: #d8f5ff; max-width: 700px; }
+        .pill { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; background: rgba(255,255,255,0.16); padding: 0.4rem 0.8rem; font-size: 0.85rem; margin-bottom: 0.7rem; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+        .chip { border: 1px solid rgba(15,118,110,0.12); background: #f8fdff; color: #0f766e; border-radius: 999px; padding: 0.55rem 0.8rem; cursor: pointer; }
+        .chip:hover { background: #ecfbff; }
+        main { display: grid; gap: 20px; }
+        section {
+            background: var(--panel);
+            padding: 1.5rem;
+            border-radius: 22px;
+            box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        h2 { color: #0f172a; border-bottom: 2px solid #c7e6f3; padding-bottom: 10px; margin-top: 0; }
+        .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .hero-card { background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(2,132,199,0.08)); border: 1px solid rgba(15,118,110,0.08); border-radius: 16px; padding: 1rem; }
+        .hero-card strong { display: block; font-size: 1.15rem; color: var(--accent); }
+        form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 1rem; }
+        .form-group { display: flex; flex-direction: column; }
+        label { font-weight: 700; margin-bottom: 5px; color: #0369a1; }
+        input[type="number"] { padding: 10px; border: 1px solid #d7e7ef; border-radius: 10px; font-size: 1rem; }
+        button { grid-column: 1 / -1; padding: 12px 20px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: white; border: none; border-radius: 999px; cursor: pointer; font-size: 1rem; font-weight: 700; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 10px 24px rgba(2,132,199,0.18); }
+        button:hover { transform: translateY(-2px); }
+        .result-box { margin-top: 16px; padding: 1rem 1.1rem; background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(2,132,199,0.08)); border-left: 5px solid var(--accent); border-radius: 14px; }
+        .result-box h3 { margin-top: 0; color: #0f172a; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .info-card { background: #f8fcfe; padding: 1.25rem; border-radius: 16px; border: 1px solid #e4f4fb; }
+        .info-card h4 { margin-top: 0; color: #0f766e; }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="pill">🐟 Smart aquaculture insights</div>
+            <h1>Aqua-Predict</h1>
+            <p>Your assistant for aquaculture planning, water quality review, and practical next steps in one elegant workspace.</p>
+            <div class="chip-row">
+                <button class="chip" type="button" data-scenario="tilapia">Freshwater tilapia</button>
+                <button class="chip" type="button" data-scenario="shrimp">Brackish shrimp</button>
+                <button class="chip" type="button" data-scenario="grouper">Marine grouper</button>
+            </div>
+        </header>
+
+        <main>
+            <section id="aquaculture-prediction">
+                <h2>Prawn & Fish Culture Prediction</h2>
+                <p>Enter the water parameters to get a recommendation for the most suitable culture.</p>
+                <div class="hero-grid">
+                    <div class="hero-card"><strong>Live guidance</strong><span>Instant recommendations tailored to your salinity and pH.</span></div>
+                    <div class="hero-card"><strong>Better decisions</strong><span>Blend biology, chemistry, and practical culture suggestions.</span></div>
+                </div>
+                <form id="culture-form">
+                    <div class="form-group">
+                        <label for="salinity">Salinity (ppt):</label>
+                        <input type="number" id="salinity" name="salinity" placeholder="e.g., 15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ph-culture">pH Value:</label>
+                        <input type="number" id="ph-culture" name="ph-culture" step="0.1" placeholder="e.g., 7.8" required>
+                    </div>
+                    <button type="button" onclick="predictCulture()">Predict Culture</button>
+                </form>
+                <div id="culture-result" class="result-box" style="display: none;">
+                    <h3>Prediction Result</h3>
+                    <p id="culture-output">Enter values and click predict to see the result.</p>
+                </div>
+            </section>
+
+            <section id="drinking-water">
+                <h2>Drinking Water Quality Check</h2>
+                <p>Check the quality of your drinking water based on key parameters.</p>
+                <form id="water-form">
+                    <div class="form-group">
+                        <label for="ph-drinking">pH Value:</label>
+                        <input type="number" id="ph-drinking" name="ph-drinking" step="0.1" placeholder="e.g., 7.2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tds">Total Dissolved Solids (TDS) (ppm):</label>
+                        <input type="number" id="tds" name="tds" placeholder="e.g., 250">
+                    </div>
+                    <div class="form-group">
+                        <label for="hardness">Hardness (mg/L as CaCO₃):</label>
+                        <input type="number" id="hardness" name="hardness" placeholder="e.g., 100">
+                    </div>
+                    <button type="button" onclick="checkWaterQuality()">Check Quality</button>
+                </form>
+                <div id="water-result" class="result-box" style="display: none;">
+                    <h3>Quality Assessment</h3>
+                    <p id="water-output">Enter values and click check to see the result.</p>
+                </div>
+            </section>
+
+            <section id="water-info">
+                <h2>Water Quality Parameters Explained</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>pH</h4>
+                        <p>Measures how acidic or alkaline water is. A range of 6.5 to 8.5 is generally acceptable for most fish and for drinking water.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Salinity</h4>
+                        <p>The concentration of dissolved salts in water, measured in parts per thousand (ppt). Crucial for distinguishing between freshwater, brackish, and marine environments.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Total Dissolved Solids (TDS)</h4>
+                        <p>Represents the total concentration of dissolved substances in water. For drinking water, a TDS level under 500 ppm is recommended.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Hardness</h4>
+                        <p>Primarily the amount of dissolved calcium and magnesium. Water is classified from soft to very hard. Moderately hard water is often preferred for drinking.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const scenario = chip.dataset.scenario;
+                const presets = {
+                    tilapia: { salinity: 0.5, ph: 7.2 },
+                    shrimp: { salinity: 7, ph: 7.8 },
+                    grouper: { salinity: 30, ph: 7.6 }
+                };
+                const values = presets[scenario];
+                if (!values) return;
+                document.getElementById('salinity').value = values.salinity;
+                document.getElementById('ph-culture').value = values.ph;
+            });
+        });
+
+        function predictCulture() {
+            const salinity = parseFloat(document.getElementById('salinity').value);
+            const ph = parseFloat(document.getElementById('ph-culture').value);
+            const resultBox = document.getElementById('culture-result');
+            const output = document.getElementById('culture-output');
+
+            if (isNaN(salinity) || isNaN(ph)) {
+                output.innerHTML = 'Please enter valid numbers for both salinity and pH.';
+                resultBox.style.display = 'block';
+                return;
+            }
+
+            let prediction = 'Based on the provided values: <br>';
+            if (ph < 6.5 || ph > 9.0) {
+                prediction += '<b>Warning:</b> pH is outside the optimal range for most aquatic life. <br>';
+            }
+
+            if (salinity < 1) {
+                prediction += '<b>Culture Type:</b> Freshwater. Suitable for species like Carp, Catfish, and Tilapia.';
+            } else if (salinity >= 1 && salinity <= 10) {
+                prediction += '<b>Culture Type:</b> Low-Brackish water. Suitable for species like Milkfish and some varieties of Tilapia and Shrimp.';
+            } else if (salinity > 10 && salinity <= 25) {
+                prediction += '<b>Culture Type:</b> Brackish water. Ideal for Tiger Prawns (P. monodon) and Sea Bass.';
+            } else {
+                prediction += '<b>Culture Type:</b> Marine. Suitable for species like Grouper, Cobia, and Whiteleg Shrimp (L. vannamei).';
+            }
+
+            output.innerHTML = prediction;
+            resultBox.style.display = 'block';
+        }
+
+        function checkWaterQuality() {
+            const ph = parseFloat(document.getElementById('ph-drinking').value);
+            const tds = parseFloat(document.getElementById('tds').value);
+            const hardness = parseFloat(document.getElementById('hardness').value);
+            const resultBox = document.getElementById('water-result');
+            const output = document.getElementById('water-output');
+
+            if (isNaN(ph)) {
+                output.innerHTML = 'Please enter a valid pH value.';
+                resultBox.style.display = 'block';
+                return;
+            }
+
+            let waterQuality = '<b>Assessment:</b> ';
+            if (ph < 6.5 || ph > 8.5) {
+                waterQuality += 'pH is outside the ideal range. ';
+            } else {
+                waterQuality += 'pH is within the acceptable range. ';
+            }
+
+            if (!isNaN(tds)) {
+                if (tds < 500) {
+                    waterQuality += 'TDS is within the recommended range. ';
+                } else {
+                    waterQuality += 'TDS is high, consider filtration or purification. ';
+                }
+            }
+
+            if (!isNaN(hardness)) {
+                if (hardness >= 60 && hardness <= 120) {
+                    waterQuality += 'Hardness is moderately suitable for drinking. ';
+                } else if (hardness < 60) {
+                    waterQuality += 'Water is soft. ';
+                } else {
+                    waterQuality += 'Water is very hard. ';
+                }
+            }
+
+            output.innerHTML = waterQuality;
+            resultBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

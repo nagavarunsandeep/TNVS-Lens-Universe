@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medi-Info Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-shell">
+            <div>
+                <div class="eyebrow">🧪 Trusted medicine lookup</div>
+                <h1>Medi-Info Finder</h1>
+                <p>Get information about your medication by name, by symptom, or through quick smart suggestions.</p>
+            </div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-checkbox">
+                    <input type="checkbox" id="theme-checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+        </div>
+        <div class="hero-grid">
+            <div class="hero-card">
+                <strong>Fast search</strong>
+                <span>Use name search, symptom search, or photo scan with a polished workflow.</span>
+            </div>
+            <div class="hero-card">
+                <strong>Safety first</strong>
+                <span>Review usage, side effects, dosage, and warnings in one place.</span>
+            </div>
+            <div class="hero-card">
+                <strong>Smart suggestions</strong>
+                <span>Explore common conditions with one click and get relevant medicine ideas.</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-row">
+        <div class="search-container">
+            <h2>Find Your Medication</h2>
+            <div class="search-box" id="name-search-box">
+                <label for="medicineNameInput" class="sr-only">Medicine Name</label>
+                <input type="text" id="medicineNameInput" placeholder="e.g., Paracetamol" autocomplete="off">
+                <div id="autocomplete-list" class="autocomplete-items hidden"></div>
+            </div>
+            <p class="separator-text">or</p>
+            <div id="drop-zone" class="photo-actions">
+                <p>Drag & Drop Photo Here</p>
+                <label for="medicinePhotoInput" class="button-like-label">Or Select Photo</label>
+                <input type="file" id="medicinePhotoInput" accept="image/*" class="hidden">
+            </div>
+            <button id="scanWithCameraBtn">Scan with Camera</button>
+
+            <div class="quick-chips" aria-label="Common symptom suggestions">
+                <button class="quick-chip" type="button" data-type="problem" data-query="headache">Headache</button>
+                <button class="quick-chip" type="button" data-type="problem" data-query="fever">Fever</button>
+                <button class="quick-chip" type="button" data-type="problem" data-query="cough">Cough</button>
+                <button class="quick-chip" type="button" data-type="problem" data-query="allergy">Allergy</button>
+            </div>
+
+            <div id="name-results-area" class="results-area hidden"></div>
+            <div id="name-error-area" class="error-area hidden"></div>
+        </div>
+
+        <div class="search-container">
+            <h2>Find Medicine by Problem</h2>
+            <div class="search-box">
+                <label for="problemInput" class="sr-only">Problem or Symptom</label>
+                <input type="text" id="problemInput" placeholder="e.g., Headache, Fever, Cough">
+                <div id="problem-autocomplete-list" class="autocomplete-items hidden"></div>
+                <button id="searchByProblemBtn">Find Medicine</button>
+            </div>
+            <div id="problem-results-area" class="results-area hidden"></div>
+            <div id="problem-error-area" class="error-area hidden"></div>
+        </div>
+    </div>
+
+    <main>
+        <div id="loading-spinner" class="hidden">
+            <div class="spinner"></div>
+            <p>Analyzing Prescription...</p>
+        </div>
+        <div id="camera-modal" class="hidden">
+            <div class="modal-content">
+                <video id="camera-feed" autoplay playsinline></video>
+                <button id="capture-btn">Capture</button>
+                <button id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <button id="scrollToTopBtn" class="hidden" title="Go to top">↑</button>
+
+    <footer>
+        <p>Disclaimer: This tool is for informational purposes only. Always consult with a healthcare professional for medical advice.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
