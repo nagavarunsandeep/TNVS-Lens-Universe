@@ -23,25 +23,14 @@
 
 ## 🧭 🗺️ System Workflow Architecture
 
-```text
-========================================================================================
-                          🌌 [ TLU : CENTRAL UNIVERSE HUB ] 🌌
-                           (TLU.html / tnvs_style.css)
-========================================================================================
-                                      │
-       ┌──────────────────┬───────────┴───────────┬──────────────────┐
-       │                  │                       │                  │
-       ▼                  ▼                       ▼                  ▼
-╔══════════════╗   ╔══════════════╗        ╔══════════════╗   ╔══════════════╗   ╔══════════════╗
-║  PHARMALENS  ║   ║   AGRILENS   ║        ║   AQUALENS   ║   ║  ROUTELENS   ║   ║   FITLENS    ║
-║  (HEALTH AI) ║   ║ (AGRI MATH)  ║        ║  (AQUA H2O)  ║   ║ (MOBILITY AI)║   ║ (NUTRI FIT)  ║
-╚══════╦═══════╝   ╚══════╦═══════╝        ╚══════╦═══════╝   ╚══════╦═══════╝   ╚══════╦═══════╝
-       │                  │                       │                  │                  │
-       ├─► OpenFDA API    ├─► NPK Deficit Matrix  ├─► Salinity Match ├─► OSRM Routing   ├─► Mifflin BMR
-       ├─► TrOCR Vision   ├─► Crop Yield Score    ├─► Biomass Feeds  ├─► Cab Fare Cmp   ├─► Macro Splits
-       └─► Audio Alarms   └─► Profit Forecast     └─► Drinking TDS   └─► PDF & QR Map   └─► US Navy Fat
-========================================================================================
-```[cite: 1, 3, 4, 8, 10]
+The entire universe operates on a coordinated hub-and-spoke flow[cite: 1]:
+
+* 🌌 **Central Gateway Hub (`TLU.html`):** The primary command center featuring instant keyword search, dynamic category filter pills, 3D interactive tilt cards, and universal dark/light theme state management[cite: 1, 2].
+* ⚕️ **PharmaLens Module (`PharmaLens.html`):** Resolves drug queries through local databases and the live OpenFDA REST API, extracts packaging text using Hugging Face Vision OCR, and fires real-time audio-visual dosage reminders[cite: 7, 8].
+* 🌱 **AgriLens Module (`AgriLens.html`):** Processes weather, seasonal, and soil NPK inputs through multi-variable scoring algorithms, generating custom fertilizer schedules, yield metrics, and profit forecasts[cite: 3].
+* 🐟 **AquaLens Module (`AquaLens.html`):** Analyzes water salinity, Dissolved Oxygen, and pH matrices to recommend optimal aquatic cultures, evaluate pond stocking feeding rates, and verify drinking water safety[cite: 4].
+* 🗺️ **RouteLens Module (`RouteLens.html`):** Connects with OpenStreetMap Nominatim and the OSRM routing engine to draw multi-stop polyline routes, compare multi-vendor cab prices, chart elevation terrain, and export PDF itineraries with scannable QR codes[cite: 10].
+* 🏋️ **FitLens Module (`FitLens.html`):** Computes BMR and TDEE metrics via the Mifflin-St Jeor equation, outputs 40-30-30 macronutrient grams, calculates custom hydration targets, and estimates body fat via US Navy formulas[cite: 6].
 
 ---
 
@@ -67,7 +56,7 @@
 * 🔍 **Multi-Channel Search Engine:** Search medicines by brand/generic name (e.g., Paracetamol, Dolo, Zyrtec) or describe your symptoms (e.g., headache, fever, cough, asthma)[cite: 7, 8].
 * 🌐 **Live OpenFDA Integration:** Pulls official product labels, therapeutic uses, dosage administration, contraindications, and boxed warnings in real time.
 * 📷 **Optical Character Recognition (OCR):** Snap a live camera photo or drag-and-drop prescription packaging to extract drug names with Hugging Face's `microsoft/trocr-base-printed` AI model[cite: 7, 8].
-* ⏰ **Automated Audio-Visual Pill Alarms:** Add medications to a daily schedule with native browser notifications, popup toasts, and dual-tone synthesized audio chimes ($587.33\text{ Hz}$ & $880\text{ Hz}$) via the Web Audio API[cite: 7, 8].
+* ⏰ **Automated Audio-Visual Pill Alarms:** Add medications to a daily schedule with native browser notifications, popup toasts, and dual-tone synthesized audio chimes (587.33 Hz & 880 Hz) via the Web Audio API[cite: 7, 8].
 * ⚠️ **Drug Interaction Safety Wall:** Built-in safeguards against NSAID stacking, antibiotic-alcohol risks, and antacid absorption interference[cite: 7].
 
 </details>
@@ -79,7 +68,7 @@
 
 * 🌾 **Intelligent Crop Viability Matcher:** Ranks top crops (Rice, Wheat, Maize, Millets, Cotton, Sugarcane, Groundnut) based on temperature, rainfall, season, soil pH, and N-P-K levels[cite: 3].
 * 🧪 **NPK Fertilizer Deficit Engine:** Calculates exact supplemental needs for **Urea (46% N)**, **DAP (18% N, 46% P)**, and **MOP/Potash (60% K)** based on farm area[cite: 3].
-* 💰 **Yield & Revenue Predictor:** Computes harvest tonnage, estimates gross market earnings, deducts production costs ($40\%$), and projects net profit[cite: 3].
+* 💰 **Yield & Revenue Predictor:** Computes harvest tonnage, estimates gross market earnings, deducts production costs (40%), and projects net profit[cite: 3].
 * 💧 **Precision Irrigation Sizer:** Recommends optimal watering cycles for Drip, Sprinkler, Canal/Flood, or Rainfed systems[cite: 3].
 
 </details>
@@ -89,10 +78,10 @@
 
 <br>
 
-* 🌊 **Salinity & Species Culture Matcher:** Suggests ideal cultures across Freshwater ($<1\text{ ppt}$ for Tilapia/Carp), Low-Brackish ($1\text{--}10\text{ ppt}$ for Milkfish), Brackish ($10\text{--}25\text{ ppt}$ for Tiger Prawns/Sea Bass), and Marine ($>25\text{ ppt}$ for Grouper)[cite: 4].
-* 🚨 **Water Quality Safety Alarms:** Live alerts if pH levels drift outside safe limits ($6.5\text{--}9.0$) or Dissolved Oxygen drops below critical thresholds ($<4.0\text{ mg/L}$)[cite: 4].
+* 🌊 **Salinity & Species Culture Matcher:** Suggests ideal cultures across Freshwater (<1 ppt for Tilapia/Carp), Low-Brackish (1–10 ppt for Milkfish), Brackish (10–25 ppt for Tiger Prawns/Sea Bass), and Marine (>25 ppt for Grouper)[cite: 4].
+* 🚨 **Water Quality Safety Alarms:** Live alerts if pH levels drift outside safe limits (6.5–9.0) or Dissolved Oxygen drops below critical thresholds (<4.0 mg/L)[cite: 4].
 * 📊 **Stocking & Daily Feed Estimator:** Calculates maximum pond stocking capacity and daily biomass feed rates based on pond surface area[cite: 4].
-* 🚰 **Drinking Water Quality Analyzer:** Checks household drinking water against safe human consumption limits for pH, TDS ($<500\text{ ppm}$), and hardness[cite: 4].
+* 🚰 **Drinking Water Quality Analyzer:** Checks household drinking water against safe human consumption limits for pH, TDS (<500 ppm), and hardness[cite: 4].
 
 </details>
 
@@ -117,8 +106,8 @@
 
 * 🔥 **BMR & TDEE Metabolic Engine:** Calculates Basal Metabolic Rate via the Mifflin-St Jeor equation and Total Daily Energy Expenditure scaled to physical activity levels[cite: 6].
 * 🎯 **Goal-Oriented Calorie Sizing:** Automatically adjusts caloric targets for Weight Maintenance, 0.5 kg/week Fat Loss, or 0.5 kg/week Muscle Gain[cite: 6].
-* 🥗 **Balanced Macronutrient Breakdown:** Splits daily intake into $40\%$ Carbohydrates, $30\%$ Protein, and $30\%$ Healthy Fats in total grams[cite: 6].
-* 💧 **Smart Hydration Calculator:** Recommends daily water targets from body weight ($35\text{ ml/kg}$) and workout duration ($350\text{ ml per } 30\text{ min}$)[cite: 6].
+* 🥗 **Balanced Macronutrient Breakdown:** Splits daily intake into 40% Carbohydrates, 30% Protein, and 30% Healthy Fats in total grams[cite: 6].
+* 💧 **Smart Hydration Calculator:** Recommends daily water targets from body weight (35 ml/kg) and workout duration (350 ml per 30 min)[cite: 6].
 * 📏 **US Navy Body Fat Estimation:** Estimates body fat percentages using circumference measurements of the neck, waist, height, and hips (for females)[cite: 6].
 
 </details>
@@ -127,27 +116,31 @@
 
 ## 🧠 🧮 Built-in Calculators & Mathematical Models
 
-```latex
-1. Basal Metabolic Rate (Mifflin-St Jeor):
-   BMR (Male)   = (10 * weight_kg) + (6.25 * height_cm) - (5 * age) + 5
-   BMR (Female) = (10 * weight_kg) + (6.25 * height_cm) - (5 * age) - 161
-
-2. Total Daily Energy Expenditure (TDEE):
-   TDEE = BMR * Activity_Multiplier (1.2 to 1.9)
-
-3. Daily Hydration Intake (Liters):
-   Water_Liters = (weight_kg * 0.035) + ((workout_mins / 30) * 0.35)
-
-4. Agricultural Fertilizer Deficit (AgriLens):
-   Deficit_P = max(0, 60 - soil_P)
-   DAP_kg    = (Deficit_P / 0.46) * Area_ha
-   Urea_N    = (DAP_kg / Area_ha) * 0.18
-   Urea_kg   = (max(0, (120 - soil_N) - Urea_N) / 0.46) * Area_ha
-   MOP_kg    = (max(0, 60 - soil_K) / 0.60) * Area_ha
-
-5. Haversine Great-Circle Distance (RouteLens):
-   d = 2 * R * asin( sqrt( sin²(Δlat/2) + cos(lat1) * cos(lat2) * sin²(Δlon/2) ) )
-```[cite: 3, 6, 10]
+* **Basal Metabolic Rate (Mifflin-St Jeor)[cite: 6]:**
+  $$\text{BMR}_{\text{Male}} = (10 \times \text{weight}_{\text{kg}}) + (6.25 \times \text{height}_{\text{cm}}) - (5 \times \text{age}) + 5$$
+[cite: 6]
+  $$\text{BMR}_{\text{Female}} = (10 \times \text{weight}_{\text{kg}}) + (6.25 \times \text{height}_{\text{cm}}) - (5 \times \text{age}) - 161$$
+[cite: 6]
+* **Total Daily Energy Expenditure (TDEE)[cite: 6]:**
+  $$\text{TDEE} = \text{BMR} \times \text{Activity Multiplier (1.2 to 1.9)}$$
+[cite: 6]
+* **Daily Hydration Target (FitLens)[cite: 6]:**
+  $$\text{Water (Liters)} = (\text{weight}_{\text{kg}} \times 0.035) + \left(\frac{\text{workout minutes}}{30} \times 0.35\right)$$
+[cite: 6]
+* **Agricultural Fertilizer Deficit (AgriLens)[cite: 3]:**
+  $$\text{Deficit P} = \max(0, 60 - \text{soil P})$$
+[cite: 3]
+  $$\text{DAP Needed (kg)} = \left(\frac{\text{Deficit P}}{0.46}\right) \times \text{Farm Area (ha)}$$
+[cite: 3]
+  $$\text{Urea N Contribution} = \left(\frac{\text{DAP (kg)}}{\text{Farm Area}}\right) \times 0.18$$
+[cite: 3]
+  $$\text{Urea Needed (kg)} = \left(\frac{\max(0, (120 - \text{soil N}) - \text{Urea N})}{0.46}\right) \times \text{Farm Area (ha)}$$
+[cite: 3]
+  $$\text{MOP Needed (kg)} = \left(\frac{\max(0, 60 - \text{soil K})}{0.60}\right) \times \text{Farm Area (ha)}$$
+[cite: 3]
+* **Haversine Great-Circle Distance (RouteLens)[cite: 10]:**
+  $$d = 2R \cdot \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta\text{lat}}{2}\right) + \cos(\text{lat}_1)\cos(\text{lat}_2)\sin^2\left(\frac{\Delta\text{lon}}{2}\right)}\right)$$
+[cite: 10]
 
 ---
 
