@@ -1,186 +1,205 @@
-# 🌌 TNVS Lens Universe (TLU)
+# 🌌 TNVS LENS UNIVERSE (TLU) 🚀
 
 <div align="center">
 
-[![Universe Status](https://img.shields.io/badge/System-Active%20%7C%20Production%20Ready-007bff?style=for-the-badge&logo=rocket&logoColor=white)](TLU.html)
-[![Active Lenses](https://img.shields.io/badge/Core%20Modules-5%20Specialized%20Lenses-23d5ab?style=for-the-badge)](TLU.html)
-[![API Layer](https://img.shields.io/badge/Live%20APIs-OpenFDA%20%7C%20HuggingFace%20%7C%20OSRM%20%7C%20Open--Meteo-8dd0ff?style=for-the-badge)](#-integrated-apis--services)
-[![UI Interface](https://img.shields.io/badge/Interface-Glassmorphism%20%7C%20Dark%20%26%20Light-ee7752?style=for-the-badge)](tnvs_style.css)
+![Universe Status](https://img.shields.io/badge/Universe-Online%20%26%20Active-007bff?style=for-the-badge&logo=satellite&logoColor=white)
+![Core Modules](https://img.shields.io/badge/Lenses-5%20Specialized%20Engines-23d5ab?style=for-the-badge&logo=superpowers&logoColor=white)
+![AI Integrations](https://img.shields.io/badge/AI%20Power-OpenFDA%20%7C%20HuggingFace%20%7C%20OSRM-8dd0ff?style=for-the-badge&logo=themodelsresource&logoColor=white)
+![UI Aesthetics](https://img.shields.io/badge/Design-Glassmorphism%20%7C%20Starfield-ee7752?style=for-the-badge&logo=traefikmesh&logoColor=white)
 
-**An all-in-one web portal that turns complex data into clear, actionable tools for healthcare, farming, aquaculture, travel, and fitness.**
+### 🔮 *Your All-in-One AI-Powered Gateway to Specialized Everyday Decisions* 🔮
 
-[Explore Lenses](#-explore-the-lenses) • [System Flow](#-how-the-system-works) • [Feature Deep Dive](#-interactive-feature-deep-dive) • [Formulas & Math](#-built-in-calculators--logic) • [Quickstart](#-getting-started)
+[🌟 Explore the Lenses](#-the-5-stellar-lenses) • [✨ Interactive Features](#-deep-dive-interactive-features) • [🧠 Smart Formulas](#-built-in-calculators--mathematical-models) • [🛠️ Tech Matrix](#%EF%B8%8F-technology-ecosystem) • [⚡ Instant Setup](#-instant-getting-started)
 
 ---
 
 </div>
 
-## 📖 What is TNVS Lens Universe?
+## 📖 🌠 Project Overview
 
-**TNVS Lens Universe (TLU)** brings 5 dedicated information and prediction tools into a single, cohesive dashboard. Instead of jumping between multiple websites and tools, users can instantly search, calculate, and analyze real-world scenarios across medicine, agriculture, water quality, trip planning, and health metrics[cite: 1, 3, 4, 8, 10].
-
----
-
-## 🗺️ How the System Works
-
-The platform operates as a unified hub connecting individual specialized applications:
-
-* **Central Gateway (`TLU.html`):** The primary landing page featuring client-side search, category filter pills (`Health`, `Agriculture`, `Aquaculture`, `Mobility`, `Wellness`), dynamic animated starfields, and 3D interactive tilt cards[cite: 1, 2].
-* **PharmaLens Module (`PharmaLens.html`):** Connects with OpenFDA and Hugging Face OCR to deliver medication lookups, image extraction, and audio-visual dosage reminders[cite: 7, 8].
-* **AgriLens Module (`AgriLens.html`):** Runs soil chemistry scoring, deficit fertilizer math, and crop yield profit forecasting[cite: 3].
-* **AquaLens Module (`AquaLens.html`):** Evaluates water salinity, chemical thresholds, daily feeding biomass, and drinking water safety[cite: 4].
-* **RouteLens Module (`RouteLens.html`):** Integrates Leaflet mapping, OSRM turn-by-turn routing, multi-brand cab price calculations, terrain elevation charts, and PDF itinerary exports[cite: 10].
-* **FitLens Module (`FitLens.html`):** Calculates metabolic rates (Mifflin-St Jeor), macronutrient distributions, body fat percentages, and daily water needs[cite: 6].
+**TNVS Lens Universe (TLU)** is an interactive, multi-lens discovery universe designed to turn raw data into instant, confident decisions. From medical informatics to agricultural chemistry, aquaculture sizing, smart mobility routing, and metabolic health planning, TLU replaces scattered web tools with five dedicated, interconnected engines wrapped in an ultra-modern glassmorphic interface with animated 3D starfield particles[cite: 1, 2].
 
 ---
 
-## 🚀 Explore the Lenses
+## 🧭 🗺️ System Workflow Architecture
 
-| Lens | Domain | Core Purpose | Quick Highlights |
+```text
+                                  🌌 [ TNVS LENS UNIVERSE HUB ] 🌌
+                                      (TLU.html / tnvs_style.css)
+                                                │
+         ┌──────────────────┬───────────────────┼───────────────────┬──────────────────┐
+         │                  │                   │                   │                  │
+         ▼                  ▼                   ▼                   ▼                  ▼
+   ⚕️ PharmaLens       🌱 AgriLens         🐟 AquaLens         🗺️ RouteLens       🏋️ FitLens
+   (Health & Meds)    (Soil & Farming)    (Aquaculture & H2O) (Smart Mobility)   (Metabolic Fit)
+         │                  │                   │                   │                  │
+   ├── 💊 OpenFDA API ├── 🧪 NPK Matrix   ├── 🌊 Salinity     ├── 🚗 OSRM Map    ├── 🔥 Mifflin-St
+   ├── 📷 Vision OCR  ├── 🌾 Crop Rank    ├── 🐟 Biomass Feed ├── 🚕 Cab Fares   ├── ⚖️ US Navy Fat
+   └── ⏰ Pill Alarms └── 💰 Yield Profit └── 🚰 TDS Safety   └── 📄 PDF Export  └── 💧 Hydration
+```[cite: 1, 3, 4, 8, 10]
+
+---
+
+## 🌟 🚀 The 5 Stellar Lenses
+
+| Lens | Category | Core Superpower | Interactive Highlights |
 | :--- | :--- | :--- | :--- |
-| ⚕️ **PharmaLens** | **Health** | Medicine lookup & dosage companion[cite: 1] | Instant name/symptom search, OCR box scanning, and automated pill alarms[cite: 7, 8]. |
-| 🌱 **AgriLens** | **Agriculture** | Smart crop matching & farm budgeting[cite: 1] | Soil test analysis, custom fertilizer dosing (Urea/DAP/MOP), and revenue estimates[cite: 3]. |
-| 🐟 **AquaLens** | **Aquaculture** | Water chemistry & aquaculture advisor[cite: 1] | Salinity matching for fish/shrimp, pond stocking rates, and drinking water checks[cite: 4]. |
-| 🗺️ **RouteLens** | **Mobility** | AI trip planner & ride aggregator[cite: 1] | Live map polylines, cab price comparison (Uber/Ola/Rapido), and PDF trip exports[cite: 10]. |
-| 🏋️ **FitLens** | **Wellness** | Nutrition, calorie & body goal calculator[cite: 1] | TDEE metabolic math, US Navy body fat estimation, and daily macro breakdowns[cite: 6]. |
+| ⚕️ **PharmaLens** | **Health & Pharma** | Smart drug identifier & daily dosage planner[cite: 1, 7] | 🔍 Live OpenFDA lookup, 📸 Hugging Face OCR camera scan, ⏰ Audio pill alarms[cite: 7, 8]. |
+| 🌱 **AgriLens** | **Precision Farming** | Crop matching & agricultural finance[cite: 1, 3] | 🧪 NPK fertilizer calculator, 🌾 Yield revenue estimator, 💧 Custom irrigation plans[cite: 3]. |
+| 🐟 **AquaLens** | **Aquaculture & H₂O** | Water chemistry & marine culture advisor[cite: 1, 4] | 🌊 Salinity matching (Shrimp/Fish), 📊 Pond feed sizing, 🚰 Drinking water analysis[cite: 4]. |
+| 🗺️ **RouteLens** | **Smart Mobility** | Multi-modal travel engine & trip planner[cite: 1, 10] | 🗺️ Leaflet turn-by-turn routing, 🚕 Live cab rates (Uber/Ola/Rapido), 📄 PDF download[cite: 10]. |
+| 🏋️ **FitLens** | **Health & Wellness** | Metabolic target & body composition engine[cite: 1, 6] | 🔥 BMR/TDEE math, 🥗 40-30-30 macro splits, 💧 Water sizer, 📏 US Navy body fat %[cite: 6]. |
 
 ---
 
-## 🔍 Interactive Feature Deep Dive
+## ✨ 🎮 Deep-Dive Interactive Features
 
 <details>
-<summary><b>⚕️ 1. PharmaLens — Medication Intelligence & Pill Reminders (Click to expand)</b></summary>
+<summary><b>⚕️ 1. PharmaLens — Medication Intelligence & Safety Assistant (Click to Expand) 💊</b></summary>
 
 <br>
 
-* **Dual Search Mode:** Find medicines by generic/brand name (e.g., Paracetamol, Dolo, Zyrtec) or by describing common symptoms (e.g., headache, fever, acid reflux)[cite: 7, 8].
-* **Live OpenFDA Integration:** Automatically fetches usage guidelines, side effects, dosage advice, precautions, and boxed warnings from official FDA drug labels[cite: 8].
-* **Smart Optical Character Recognition (OCR):** Upload photos of prescription bottles or packaging, or use your live device camera to extract text using the Hugging Face `microsoft/trocr-base-printed` AI model[cite: 7, 8].
-* **Automated Audio-Visual Pill Alarms:** Add medications directly to your daily schedule[cite: 7, 8]. An active background timer triggers native browser alerts, popup banners, and synthesized chime sounds via the Web Audio API when it is time for a dose[cite: 8].
-* **Drug Interaction Quick-Check:** Displays guidelines to prevent risky drug combinations (such as multiple NSAIDs, alcohol interactions, or antacid absorption interference)[cite: 7].
+* 🔍 **Multi-Channel Search Engine:** Search medicines by brand/generic name (e.g., Paracetamol, Dolo, Zyrtec) or describe your symptoms (e.g., headache, fever, cough, asthma)[cite: 7, 8].
+* 🌐 **Live OpenFDA Integration:** Pulls official product labels, therapeutic uses, dosage administration, contraindications, and boxed warnings in real time.
+* 📷 **Optical Character Recognition (OCR):** Snap a live camera photo or drag-and-drop prescription packaging to extract drug names with Hugging Face's `microsoft/trocr-base-printed` AI model[cite: 7, 8].
+* ⏰ **Automated Audio-Visual Pill Alarms:** Add medications to a daily schedule with native browser notifications, popup toasts, and dual-tone synthesized audio chimes ($587.33\text{ Hz}$ & $880\text{ Hz}$) via the Web Audio API[cite: 7, 8].
+* ⚠️ **Drug Interaction Safety Wall:** Built-in safeguards against NSAID stacking, antibiotic-alcohol risks, and antacid absorption interference[cite: 7].
 
 </details>
 
 <details>
-<summary><b>🌱 2. AgriLens — Soil Precision & Farm Profit Planner (Click to expand)</b></summary>
+<summary><b>🌱 2. AgriLens — Soil Agronomy & Farm Economy Optimizer (Click to Expand) 🌾</b></summary>
 
 <br>
 
-* **Crop Viability Matcher:** Enter local weather conditions (temperature, humidity, rainfall), season (Kharif, Rabi, Zaid), and soil parameters (pH, soil type, N-P-K levels) to score the best crops[cite: 3].
-* **Fertilizer Deficit Calculation:** Analyzes nitrogen, phosphorus, and potassium gaps against ideal crop baselines ($120\text{--}60\text{--}60\text{ kg/ha}$) and determines exact amounts of Urea (46% N), DAP (18% N, 46% P), and MOP (60% K) needed for the specified farm area[cite: 3].
-* **Yield & Revenue Estimator:** Calculates expected harvest tonnage and uses market benchmarks to forecast gross income, total production costs ($40\%$), and net profit[cite: 3].
-* **Irrigation Scheduling:** Generates watering cycles and moisture management tips tailored to Drip, Sprinkler, Canal/Flood, or Rainfed systems[cite: 3].
+* 🌾 **Intelligent Crop Viability Matcher:** Ranks top crops (Rice, Wheat, Maize, Millets, Cotton, Sugarcane, Groundnut) based on temperature, rainfall, season, soil pH, and N-P-K levels[cite: 3].
+* 🧪 **NPK Fertilizer Deficit Engine:** Calculates exact supplemental needs for **Urea (46% N)**, **DAP (18% N, 46% P)**, and **MOP/Potash (60% K)** based on farm area[cite: 3].
+* 💰 **Yield & Revenue Predictor:** Computes harvest tonnage, estimates gross market earnings, deducts production costs ($40\%$), and projects net profit[cite: 3].
+* 💧 **Precision Irrigation Sizer:** Recommends optimal watering cycles for Drip, Sprinkler, Canal/Flood, or Rainfed systems[cite: 3].
 
 </details>
 
 <details>
-<summary><b>🐟 3. AquaLens — Aquaculture Assistant & Water Quality Checker (Click to expand)</b></summary>
+<summary><b>🐟 3. AquaLens — Aquaculture Habitat & Water Chemistry Matrix (Click to Expand) 🌊</b></summary>
 
 <br>
 
-* **Culture Recommender:** Matches water salinity and pH to suitable species across Freshwater ($<1\text{ ppt}$ for Tilapia/Carp), Low-Brackish ($1\text{--}10\text{ ppt}$ for Milkfish), Brackish ($10\text{--}25\text{ ppt}$ for Tiger Prawns/Sea Bass), and Marine ($>25\text{ ppt}$ for Grouper)[cite: 4].
-* **Critical Water Alerts:** Displays warnings if pH drifts outside safe limits ($6.5\text{--}9.0$) or if Dissolved Oxygen falls below $4.0\text{ mg/L}$[cite: 4].
-* **Pond Stocking & Daily Feeding:** Estimates optimal fingerling/post-larvae stocking capacity for pond size and calculates daily feed requirements based on biomass consumption models[cite: 4].
-* **Drinking Water Assessment:** Tests drinking water samples against recommended ranges for pH ($6.5\text{--}8.5$), Total Dissolved Solids ($\text{TDS} < 500\text{ ppm}$), and hardness[cite: 4].
+* 🌊 **Salinity & Species Culture Matcher:** Suggests ideal cultures across Freshwater ($<1\text{ ppt}$ for Tilapia/Carp), Low-Brackish ($1\text{--}10\text{ ppt}$ for Milkfish), Brackish ($10\text{--}25\text{ ppt}$ for Tiger Prawns/Sea Bass), and Marine ($>25\text{ ppt}$ for Grouper)[cite: 4].
+* 🚨 **Water Quality Safety Alarms:** Live alerts if pH levels drift outside safe limits ($6.5\text{--}9.0$) or Dissolved Oxygen drops below critical thresholds ($<4.0\text{ mg/L}$)[cite: 4].
+* 📊 **Stocking & Daily Feed Estimator:** Calculates maximum pond stocking capacity and daily biomass feed rates based on pond surface area[cite: 4].
+* 🚰 **Drinking Water Quality Analyzer:** Checks household drinking water against safe human consumption limits for pH, TDS ($<500\text{ ppm}$), and hardness[cite: 4].
 
 </details>
 
 <details>
-<summary><b>🗺️ 4. RouteLens — Travel Assistant & Ride Price Comparison (Click to expand)</b></summary>
+<summary><b>🗺️ 4. RouteLens — AI Travel Itineraries & Ride Comparison (Click to Expand) 🚗</b></summary>
 
 <br>
 
-* **Interactive Mapping & Route Polyline:** Uses OpenStreetMap geocoding and the OSRM routing engine to display driving routes with optional stopovers (Via) on an interactive Leaflet map[cite: 10].
-* **Multi-Service Cab Comparison:** Compares estimated fares and trip durations across Uber, Ola, and Rapido, complete with direct booking deep links[cite: 10].
-* **Self-Drive & Toll Cost Estimator:** Calculates real-time fuel costs based on vehicle mileage and fuel price, factors in estimated highway tolls, and includes round-trip calculations[cite: 10].
-* **Terrain Elevation Profiling:** Generates an interactive Chart.js elevation chart showing gradient and climbs along the travel path[cite: 10].
-* **PDF Itinerary & Route QR Code:** Exports detailed timeline schedules to PDF via `jsPDF` and generates scannable QR codes for mobile navigation[cite: 10].
-* **Traveler Toolkit:** Real-time destination weather, local clock, currency converter, interactive packing checklist, SOS numbers, and an embedded travel assistant chatbot[cite: 10].
+* 🗺️ **Turn-by-Turn Leaflet Routing:** Connects with OSRM and OpenStreetMap Nominatim for multi-stop journeys with interactive map polylines and stopovers (Via)[cite: 10].
+* 🚕 **Real-Time Cab Fare Comparator:** Calculates estimates for Uber (Go, Moto, Premier), Ola (Mini, Bike, Auto), and Rapido (Bike, Auto, Cab) with direct booking links[cite: 10].
+* ⛽ **Self-Drive Fuel & Toll Economics:** Computes mileage-based fuel costs, adds highway tolls, and factors in round trips[cite: 10].
+* ⛰️ **Dynamic Elevation Profile:** Generates interactive terrain contour charts via Chart.js to inspect elevation climbs and slopes[cite: 10].
+* 📄 **PDF Itinerary & Mobile Route QR:** Exports schedules into printable PDFs via `jsPDF` and generates instant scannable QR codes for mobile map navigation[cite: 10].
+* 🧳 **Travel Toolkit:** Live destination weather, timezone clock, currency conversions, packing checklists, emergency SOS hotlines, and an embedded travel chatbot[cite: 10].
 
 </details>
 
 <details>
-<summary><b>🏋️ 5. FitLens — Health Metrics & Nutrition Target Sizer (Click to expand)</b></summary>
+<summary><b>🏋️ 5. FitLens — Metabolic Health & Body Composition Engine (Click to Expand) 🥗</b></summary>
 
 <br>
 
-* **Energy Expenditure Calculator:** Computes Basal Metabolic Rate (BMR) via the Mifflin-St Jeor formula and calculates Total Daily Energy Expenditure (TDEE) across activity levels[cite: 6].
-* **Goal-Driven Calorie Targets:** Adjusts caloric intake based on personal goals (Maintenance, 0.5 kg/week Fat Loss, or 0.5 kg/week Muscle Gain)[cite: 6].
-* **Macronutrient Distribution:** Splits target calories into Carbohydrates ($40\%$), Protein ($30\%$), and Healthy Fats ($30\%$) in total grams[cite: 6].
-* **Hydration Calculator:** Computes baseline daily water intake based on body weight ($35\text{ ml/kg}$) and adds bonus water for workout duration ($350\text{ ml per } 30\text{ min}$)[cite: 6].
-* **US Navy Body Fat Estimation:** Calculates body fat percentages using circumference measurements of the neck, waist, height, and hips (for females)[cite: 6].
+* 🔥 **BMR & TDEE Metabolic Engine:** Calculates Basal Metabolic Rate via the Mifflin-St Jeor equation and Total Daily Energy Expenditure scaled to physical activity levels[cite: 6].
+* 🎯 **Goal-Oriented Calorie Sizing:** Automatically adjusts caloric targets for Weight Maintenance, 0.5 kg/week Fat Loss, or 0.5 kg/week Muscle Gain[cite: 6].
+* 🥗 **Balanced Macronutrient Breakdown:** Splits daily intake into $40\%$ Carbohydrates, $30\%$ Protein, and $30\%$ Healthy Fats in total grams[cite: 6].
+* 💧 **Smart Hydration Calculator:** Recommends daily water targets from body weight ($35\text{ ml/kg}$) and workout duration ($350\text{ ml per } 30\text{ min}$)[cite: 6].
+* 📏 **US Navy Body Fat Estimation:** Estimates body fat percentages using circumference measurements of the neck, waist, height, and hips (for females)[cite: 6].
 
 </details>
 
 ---
 
-## 🧮 Built-in Calculators & Logic
+## 🧠 🧮 Built-in Calculators & Mathematical Models
 
-* **BMR & TDEE Calculations (FitLens):**
-  * $\text{BMR}_{\text{Male}} = 10 \times \text{weight (kg)} + 6.25 \times \text{height (cm)} - 5 \times \text{age} + 5$[cite: 6]
-  * $\text{BMR}_{\text{Female}} = 10 \times \text{weight (kg)} + 6.25 \times \text{height (cm)} - 5 \times \text{age} - 161$[cite: 6]
-  * $\text{TDEE} = \text{BMR} \times \text{Activity Multiplier (1.2 to 1.9)}$[cite: 6]
-* **Hydration Intake Target (FitLens):**
-  * $\text{Daily Water (Liters)} = (\text{weight (kg)} \times 0.035) + \left(\frac{\text{workout minutes}}{30} \times 0.35\right)$[cite: 6]
-* **Fertilizer Deficit Requirements (AgriLens):**
-  * $\text{Deficit P} = \max(0, 60 - \text{soil P})$[cite: 3]
-  * $\text{DAP Needed (kg)} = \left(\frac{\text{Deficit P}}{0.46}\right) \times \text{Farm Area (ha)}$[cite: 3]
-  * $\text{Urea N Contribution} = \left(\frac{\text{DAP (kg)}}{\text{Farm Area}}\right) \times 0.18$[cite: 3]
-  * $\text{Urea Needed (kg)} = \left(\frac{\max(0, (120 - \text{soil N}) - \text{Urea N})}{0.46}\right) \times \text{Farm Area (ha)}$[cite: 3]
-  * $\text{MOP Needed (kg)} = \left(\frac{\max(0, 60 - \text{soil K})}{0.60}\right) \times \text{Farm Area (ha)}$[cite: 3]
-* **Haversine Distance Model (RouteLens):**
-  * $d = 2R \cdot \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta\text{lat}}{2}\right) + \cos(\text{lat}_1)\cos(\text{lat}_2)\sin^2\left(\frac{\Delta\text{lon}}{2}\right)}\right)$[cite: 10]
+```latex
+1. Basal Metabolic Rate (Mifflin-St Jeor):
+   BMR (Male)   = (10 * weight_kg) + (6.25 * height_cm) - (5 * age) + 5
+   BMR (Female) = (10 * weight_kg) + (6.25 * height_cm) - (5 * age) - 161
 
----
+2. Total Daily Energy Expenditure (TDEE):
+   TDEE = BMR * Activity_Multiplier (1.2 to 1.9)
 
-## 🌐 Integrated APIs & Services
+3. Daily Hydration Intake (Liters):
+   Water_Liters = (weight_kg * 0.035) + ((workout_mins / 30) * 0.35)
 
-* **OpenFDA Drug Label API:** Fetches structured medicine usage, dosage, and warning profiles[cite: 8].
-* **Hugging Face Inference API:** Uses the `microsoft/trocr-base-printed` OCR model to process prescription and packaging images[cite: 8].
-* **OpenStreetMap Nominatim:** Provides debounced address autocomplete and geocoding[cite: 10].
-* **OSRM Routing Engine:** Delivers polyline coordinates, multi-stop itineraries, and travel time estimates[cite: 10].
-* **Open-Meteo API:** Provides destination weather conditions and elevation path sampling[cite: 10].
-* **ExchangeRate-API:** Delivers multi-currency conversion rates[cite: 10].
+4. Agricultural Fertilizer Deficit (AgriLens):
+   Deficit_P = max(0, 60 - soil_P)
+   DAP_kg    = (Deficit_P / 0.46) * Area_ha
+   Urea_N    = (DAP_kg / Area_ha) * 0.18
+   Urea_kg   = (max(0, (120 - soil_N) - Urea_N) / 0.46) * Area_ha
+   MOP_kg    = (max(0, 60 - soil_K) / 0.60) * Area_ha
+
+5. Haversine Great-Circle Distance (RouteLens):
+   d = 2 * R * asin( sqrt( sin²(Δlat/2) + cos(lat1) * cos(lat2) * sin²(Δlon/2) ) )
+```[cite: 3, 6, 10]
 
 ---
 
-## 📂 Repository Structure
+## 🛠️ 💻 Technology Ecosystem
+
+<div align="center">
+
+| Layer | Technologies & Libraries |
+| :--- | :--- |
+| **🎨 Frontend Core** | HTML5, Modern CSS3 Variables, ES6+ JavaScript, Responsive Viewports[cite: 1, 2] |
+| **💎 UI & Aesthetics** | Glassmorphism, Tailwind CSS, Bootstrap 5.3, Animated Canvas Starfields[cite: 2, 3, 10] |
+| **🗺️ Maps & Visuals** | Leaflet.js, OpenStreetMap Tiles, Chart.js Terrain Plots[cite: 10] |
+| **📄 Media & Docs** | jsPDF Exporter, QRCode.js Generator, Web Audio API Oscillator[cite: 8, 10] |
+| **🌐 Cloud & APIs** | OpenFDA REST API, Hugging Face TrOCR, OSRM Routing, Open-Meteo, ExchangeRate-API[cite: 8, 10] |
+
+</div>
+
+---
+
+## 📂 📁 Project Structure
 
 ```text
 TNVS-Lens-Universe/
-├── TLU.html                     # Central Lens Hub & Interactive Search Portal
-├── tnvs_style.css               # Starfield CSS, theme engine & base glassmorphism
 │
-├── PharmaLens/                  # Health & Pharmacology Suite
-│   ├── PharmaLens.html          # Camera scanner, search & pill scheduler UI
-│   ├── script.js                # OpenFDA API, HuggingFace OCR, Web Audio alarms
-│   └── style.css                # Drug card styles, theme overrides & print layout
+├── 🌌 TLU.html                 # Main Universe Dashboard & Search Portal
+├── 🎨 tnvs_style.css           # Global Glassmorphism & Animated Starfield Theme
 │
-├── AgriLens/                    # Agriculture & Soil Science
-│   └── AgriLens.html            # Crop confidence matrix, NPK math & yield estimator
+├── ⚕️ PharmaLens/              # Health & Pharmacology Suite
+│   ├── PharmaLens.html         # Camera scanner, search & pill scheduler UI
+│   ├── script.js               # OpenFDA API, HuggingFace OCR, Web Audio alarms
+│   └── style.css               # Drug card styles, theme overrides & print layout
 │
-├── AquaLens/                    # Aquaculture & Hydrochemistry
-│   └── AquaLens.html            # Salinity classifier, biomass feed & water test
+├── 🌱 AgriLens/                # Agriculture & Soil Science Suite
+│   └── AgriLens.html           # Crop scoring matrix, NPK deficit & profit estimator
 │
-├── RouteLens/                   # Mobility, Routing & Logistics
-│   └── RouteLens.html           # Leaflet maps, OSRM engine, ride simulator, jsPDF
+├── 🐟 AquaLens/                # Aquaculture & Water Chemistry Suite
+│   └── AquaLens.html           # Salinity matcher, biomass feeding & water testing
 │
-└── FitLens/                     # Wellness & Body Composition
-    ├── FitLens.html             # Mifflin-St Jeor calculator, US Navy body fat
-    └── FitLens.css              # Custom progress gauges & card components
+├── 🗺️ RouteLens/               # Mobility, Navigation & Logistics Suite
+│   └── RouteLens.html          # Leaflet routing, ride price simulator, jsPDF
+│
+└── 🏋️ FitLens/                 # Fitness, Nutrition & Body Composition
+    ├── FitLens.html            # Mifflin-St Jeor calculator, US Navy body fat
+    └── FitLens.css             # Metric progress gauges & card components
 ```[cite: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ---
 
-## ⚡ Getting Started
+## ⚡ 🏁 Instant Getting Started
 
-### Prerequisites
-* Any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari)[cite: 1, 8].
-* A local static server to support camera input and local asset loading without CORS restrictions[cite: 8].
+### 📋 Prerequisites
+* Any modern web browser with JavaScript enabled (Chrome, Firefox, Safari, Edge)[cite: 1, 8].
+* A simple local HTTP server (to ensure smooth camera permissions and asset loading).
 
-### Running the App Locally
+### 💻 Local Run Commands
 
-1. **Clone the repository:**
+1. **Clone the Repository:**
    ```bash
    git clone [https://github.com/your-username/tnvs-lens-universe.git](https://github.com/your-username/tnvs-lens-universe.git)
    cd tnvs-lens-universe
