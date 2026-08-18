@@ -24,18 +24,23 @@
 ## 🧭 🗺️ System Workflow Architecture
 
 ```text
-                                  🌌 [ TNVS LENS UNIVERSE HUB ] 🌌
-                                      (TLU.html / tnvs_style.css)
-                                                │
-         ┌──────────────────┬───────────────────┼───────────────────┬──────────────────┐
-         │                  │                   │                   │                  │
-         ▼                  ▼                   ▼                   ▼                  ▼
-   ⚕️ PharmaLens       🌱 AgriLens         🐟 AquaLens         🗺️ RouteLens       🏋️ FitLens
-   (Health & Meds)    (Soil & Farming)    (Aquaculture & H2O) (Smart Mobility)   (Metabolic Fit)
-         │                  │                   │                   │                  │
-   ├── 💊 OpenFDA API ├── 🧪 NPK Matrix   ├── 🌊 Salinity     ├── 🚗 OSRM Map    ├── 🔥 Mifflin-St
-   ├── 📷 Vision OCR  ├── 🌾 Crop Rank    ├── 🐟 Biomass Feed ├── 🚕 Cab Fares   ├── ⚖️ US Navy Fat
-   └── ⏰ Pill Alarms └── 💰 Yield Profit └── 🚰 TDS Safety   └── 📄 PDF Export  └── 💧 Hydration
+========================================================================================
+                          🌌 [ TLU : CENTRAL UNIVERSE HUB ] 🌌
+                           (TLU.html / tnvs_style.css)
+========================================================================================
+                                      │
+       ┌──────────────────┬───────────┴───────────┬──────────────────┐
+       │                  │                       │                  │
+       ▼                  ▼                       ▼                  ▼
+╔══════════════╗   ╔══════════════╗        ╔══════════════╗   ╔══════════════╗   ╔══════════════╗
+║  PHARMALENS  ║   ║   AGRILENS   ║        ║   AQUALENS   ║   ║  ROUTELENS   ║   ║   FITLENS    ║
+║  (HEALTH AI) ║   ║ (AGRI MATH)  ║        ║  (AQUA H2O)  ║   ║ (MOBILITY AI)║   ║ (NUTRI FIT)  ║
+╚══════╦═══════╝   ╚══════╦═══════╝        ╚══════╦═══════╝   ╚══════╦═══════╝   ╚══════╦═══════╝
+       │                  │                       │                  │                  │
+       ├─► OpenFDA API    ├─► NPK Deficit Matrix  ├─► Salinity Match ├─► OSRM Routing   ├─► Mifflin BMR
+       ├─► TrOCR Vision   ├─► Crop Yield Score    ├─► Biomass Feeds  ├─► Cab Fare Cmp   ├─► Macro Splits
+       └─► Audio Alarms   └─► Profit Forecast     └─► Drinking TDS   └─► PDF & QR Map   └─► US Navy Fat
+========================================================================================
 ```[cite: 1, 3, 4, 8, 10]
 
 ---
